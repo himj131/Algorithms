@@ -34,8 +34,10 @@ public class BPPracticeTest {
 
         return map.entrySet().stream()
                 .filter(it -> it.getValue() > 0)
-                .sorted(Map.Entry.<Integer, Integer>comparingByValue().reversed())
-                .sorted(Map.Entry.comparingByKey())
+                .sorted(Map.Entry.<Integer, Integer>comparingByValue().reversed()
+                        .thenComparing(Map.Entry.comparingByKey()))
+//                .sorted(Map.Entry.<Integer, Integer>comparingByValue().reversed())
+//                .sorted(Map.Entry.comparingByKey())
                 .mapToInt(Map.Entry::getKey)
                 .toArray();
     }
