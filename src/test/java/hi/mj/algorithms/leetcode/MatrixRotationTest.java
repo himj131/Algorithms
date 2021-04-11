@@ -1,4 +1,4 @@
-package hi.mj.algorithms.quiz.rotate;
+package hi.mj.algorithms.leetcode;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package hi.mj.algorithms.quiz.rotate;
+package hi.mj.algorithms.leetcode;
 
 /**
  * https://leetcode.com/problems/rotate-image/
