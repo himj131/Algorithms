@@ -1,6 +1,5 @@
 package hi.mj.algorithms.programers;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,38 +31,90 @@ import java.util.Set;
  *
  * */
 public class BPPrimeNumber {
+
     public int solution(String numbers) {
-        int answer = 0;
-        Set<Integer> possibleNums = createAllPossibleNums(numbers);
-
-        answer = Math.toIntExact(possibleNums.stream()
-                .filter(this::isPrimeNum)
-                .count());
-
-        return answer;
-    }
-
-    public Set<Integer> createAllPossibleNums(String strNum) {
-        Set<Integer> resultNumbers = new HashSet<>();
-        int[] numbers = Arrays.stream(strNum.split(""))
-                .mapToInt(Integer::parseInt)
-                .toArray();
-
-        for(int i = 0; i < numbers.length; i++){
-
+        HashSet<Integer> set = new HashSet<>();
+        permutation("", numbers, set);
+        int count = 0;
+        while(set.iterator().hasNext()){
+            int a = set.iterator().next();
+            set.remove(a);
+            if(a==2) count++;
+            if(a%2!=0 && isPrime(a)){
+                count++;
+            }
         }
-
-        return null;
+        return count;
     }
 
-    public boolean isPrimeNum(int input) {
-        boolean result = true;
-        if(input < 2) return false;
-        for(int i = 2; i < input/2; i++) {
-            if(input % i == 0) result = false;
-            break;
+    public boolean isPrime(int n){
+        if(n==0 || n==1) return false;
+        for(int i=3; i<=(int)Math.sqrt(n); i+=2){
+            if(n%i==0) return false;
         }
-        return result;
+        return true;
     }
+    public void permutation(String prefix, String str, Set<Integer> set) {
+        int n = str.length();
+        if(!prefix.equals("")) set.add(Integer.valueOf(prefix));
+        for (int i = 0; i < n; i++)
+            permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n), set);
+    }
+    
+    
+/** (풀다만)나의 풀이 */
+//    public int solution(String numbers) {
+//        int answer = 0;
+//        Set<Integer> possibleNums = createAllPossibleNums(numbers);
+//
+//        answer = Math.toIntExact(possibleNums.stream()
+//                .filter(this::isPrimeNum)
+//                .count());
+//
+//        return answer;
+//    }
+//
+//    public Set<Integer> createAllPossibleNums(String strNum) {
+//        Set<Integer> resultNumbers = new HashSet<>();
+//
+//        int[] numbers = Arrays.stream(strNum.split(""))
+//                .mapToInt(Integer::parseInt)
+//                .toArray();
+//        int length = numbers.length;
+//        int[] output = new int[length];
+//        boolean[] visited = new boolean[length];
+//
+//        for(int cnt = 1; cnt <= length; cnt++) {
+//            recursive(numbers, output, visited, 0, length, cnt, resultNumbers);
+//        }
+//
+//        return resultNumbers;
+//    }
+//
+//    private Set<Integer> recursive(int[] numbers, int[] output, boolean[] visited, int depth, int length, int cnt, Set<Integer> results) {
+//        if(cnt == 0) {
+////            System.out.println(Arrays.toString(Arrays.stream(output).filter(i -> i!=0).toArray()));
+//            return null;
+//        }
+//        for(int i = 0; i < length; i++) {
+//            if(!visited[i]){
+//                visited[i] = true;
+//                output[depth] = numbers[i];
+//                recursive(numbers, output, visited, depth+1, length, cnt-1, results);
+//                visited[i] = false;
+//            }
+//        }
+//        return results;
+//    }
+//
+//    public boolean isPrime(int input) {
+//        boolean result = true;
+//        if(input < 2) return false;
+//        for(int i = 2; i < input/2; i++) {
+//            if(input % i == 0) result = false;
+//            break;
+//        }
+//        return result;
+//    }
 
 }
