@@ -28,12 +28,17 @@ public class FrogJmp {
 
     public static class Solution {
         public int solution(int X, int Y, int D) {
-            FrogJmp frog = new FrogJmp(X, Y, D);
-            while (!frog.reachedDestination()) {
-                frog.jump();
-            }
+            //case1
+//            FrogJmp frog = new FrogJmp(X, Y, D);
+//            while (!frog.reachedDestination()) {
+//                frog.jump();
+//            }
+//
+//            return frog.getMoveCnt();
 
-            return frog.getMoveCnt();
+           //case2
+           int distance = D - X;
+           return (distance % Y) == 0 ? (distance / Y) : (distance / Y)  + 1;
         }
     }
 }
