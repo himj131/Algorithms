@@ -1,9 +1,9 @@
 package hi.mj.algorithms.codility.countingelements;
 
+import hi.mj.algorithms.codility.timecomplexity.PermCheck;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PermCheckTest {
     private PermCheck permCheck = new PermCheck();
@@ -31,4 +31,5 @@ class PermCheckTest {
         int solution = permCheck.solution(new int[]{2, 1});
         assertThat(solution).isEqualTo(1);
     }
+
 }
